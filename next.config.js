@@ -1,5 +1,4 @@
 // next.config.js
-const isProduction = process.env.NODE_ENV === 'production';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -8,7 +7,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: isProduction ? '/hello-near-examples' : '',
+  basePath: '',
   env: {
     NEAR_ACCOUNT_ID: "gregx.testnet",
     NEAR_PRIVATE_KEY: "ed25519:5FUUm31hdnh5wnahfh932MaZEmzKVeHyF6ckviss4f1HkAPMWDqooxbPTQcBHFF8mqyTak4qCa2b383mt5542amS",
