@@ -75,7 +75,7 @@ export default function Home() {
 
           {errors.exampleRequired && <span>This field is required</span>}
 
-          <input className={'mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md border w-48 mb-2 cursor-pointer'} type="submit" />
+          <input className={'mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md border w-48 mb-2 cursor-pointer'} type="submit">Send BTC</input>
         </form>
         </div>
       </div>
