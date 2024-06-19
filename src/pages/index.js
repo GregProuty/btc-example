@@ -56,7 +56,7 @@ export default function Home() {
   }
 
   return (
-    <main className={styles.main}>
+    <main className={'w-full h-full flex justify-center items-center'} className={styles.main}>
       <div className={"flex border justify-center min-w-[30em] max-w-[30em] w-[50vw] min-h-[24em] max-h-[30em] h-[50vh] bg-white rounded-xl shadow-xl p-4 mt-24"} style={{ display: 'flex', flexDirection: 'column' }}>
         <p>{`Address:`}</p>
         <input className="border p-1 rounded bg-slate-500 text-white pl-4" defaultValue={address} disabled />

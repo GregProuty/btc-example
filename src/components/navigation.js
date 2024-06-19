@@ -23,7 +23,7 @@ export const Navigation = () => {
   }, [signedAccountId, wallet, setAction, setLabel]);
 
   return (
-    <nav className="flex w-full">
+    <nav className="flex w-full fixed bg-white">
       <div className="flex justify-between p-2 w-full shadow-lg">
         <Link href="/" passHref legacyBehavior>
           <Image priority src={Logo} alt="NEAR" width="30" height="24" className="d-inline-block align-text-top" />
