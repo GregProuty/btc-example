@@ -1,14 +1,10 @@
 // next.config.js
-const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = process.env.NODE_ENV === 'production';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    unoptimized: true,
-  },
-  basePath: isProduction ? '/hello-near-examples' : '',
-  distDir: 'build',
   reactStrictMode: true,
+  distDir: 'build',
   env: {
     NEAR_ACCOUNT_ID: "gregx.testnet",
     NEAR_PRIVATE_KEY: "ed25519:5FUUm31hdnh5wnahfh932MaZEmzKVeHyF6ckviss4f1HkAPMWDqooxbPTQcBHFF8mqyTak4qCa2b383mt5542amS",
@@ -19,6 +15,6 @@ const nextConfig = {
     TATUM_API_KEY: "t-660377bd70604e001c3712e6-045c28a4cd40450e890ecded",
     NEAR_PROXY: "false"
   }
-}
+};
 
 module.exports = nextConfig;
