@@ -28,7 +28,6 @@ export default function Home() {
         path: 'bitcoin,1',
         chain: 'bitcoin'
       })
-      console.log('struct', struct)
       setAddress(struct.address)
       setPublicKey(struct.publicKey)
       checkBal()
@@ -41,7 +40,6 @@ export default function Home() {
   }, [signedAccountId, address])
 
   const sendBtc = async (to, amount) => {
-
     const response = await bitcoin.send({
       from: address,
       publicKey: publicKey,
