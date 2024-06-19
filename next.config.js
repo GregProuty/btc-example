@@ -4,7 +4,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  distDir: 'build',
+  // distDir: 'build',
+  images: {
+    unoptimized: true,
+  },
+  basePath: isProduction ? '/hello-near-examples' : '',
   env: {
     NEAR_ACCOUNT_ID: "gregx.testnet",
     NEAR_PRIVATE_KEY: "ed25519:5FUUm31hdnh5wnahfh932MaZEmzKVeHyF6ckviss4f1HkAPMWDqooxbPTQcBHFF8mqyTak4qCa2b383mt5542amS",
