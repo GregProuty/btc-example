@@ -6,7 +6,9 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-  ],      extend: {
+    "./build/*"
+  ], 
+  extend: {
     fontFamily: {
       sans: ["CircularXXSub", ...defaultTheme.fontFamily.sans],
       linearBorderGradients: ({theme }) => ({
