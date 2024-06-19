@@ -4,10 +4,10 @@ const plugin = require("tailwindcss/plugin")
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./build/**/*.{js,ts,jsx,tsx,mdx}*"
-  ], 
+  // content: [
+  //   "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  //   "./build/**/*.{js,ts,jsx,tsx,mdx}*"
+  // ], 
   extend: {
     fontFamily: {
       sans: ["CircularXXSub", ...defaultTheme.fontFamily.sans],
@@ -125,6 +125,5 @@ module.exports = {
     }),
   },
   plugins: [],
-  
 }
 
