@@ -63,7 +63,10 @@ export default function Home() {
         <input className="border p-1 rounded bg-slate-500 text-white pl-4" defaultValue={address} disabled />
 
         <p onClick={() => checkBal()}>{`Balance:`}</p>
-        <input className="border p-1 rounded bg-slate-500 text-white pl-4" defaultValue={balance} disabled />
+        <div className="flex justify-center items-center">
+          <input className="border p-1 rounded bg-slate-500 text-white pl-4 w-4/5 h-10 " defaultValue={balance} disabled />
+          <button onClick={() => checkBal()} className={'bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded border w-1/5 cursor-pointer h-10'}>Check</button>
+        </div>
 
         <div className="flex flex-col">
         <form className="flex flex-col mt-8" onSubmit={handleSubmit(onSubmit)}>
