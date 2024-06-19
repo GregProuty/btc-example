@@ -129,7 +129,7 @@ const bitcoin = {
       utxos.map(async (_, index) => {
         console.log(index)
         try {
-          console.log('got here !!!')
+          console.log('got here !!!', index, keyPair)
           await psbt.signInputAsync(index, keyPair);
         } catch (e) {
           console.warn(e, 'not signed');

@@ -30,14 +30,13 @@ export default function Home() {
       })
       setAddress(struct.address)
       setPublicKey(struct.publicKey)
-      checkBal()
     } 
     getAddress()
   }, [signedAccountId])
 
-  useEffect(() => {
-    checkBal()
-  }, [signedAccountId, address])
+  // useEffect(() => {
+  //   checkBal()
+  // }, [signedAccountId, address])
 
   const sendBtc = async (to, amount) => {
     const response = await bitcoin.send({
@@ -58,7 +57,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <div className={"flex border justify-center min-w-[30em] max-w-[30em] w-[50vw] h-[50vh] bg-white rounded-xl shadow-xl p-4 mt-24"} style={{ display: 'flex', flexDirection: 'column' }}>
+      <div className={"flex border justify-center min-w-[30em] max-w-[30em] w-[50vw] min-h-[24em] max-h-[30em] h-[50vh] bg-white rounded-xl shadow-xl p-4 mt-24"} style={{ display: 'flex', flexDirection: 'column' }}>
         <p>{`Address:`}</p>
         <input className="border p-1 rounded bg-slate-500 text-white pl-4" defaultValue={address} disabled />
 

@@ -31,6 +31,8 @@ export async function sign(payload, path) {
     rlp_payload: undefined,
   };
   let attachedDeposit = '0';
+
+  // may change in the future // if stops working try removing
   args.payload = payload.reverse();
 
   console.log(
