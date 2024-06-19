@@ -3,7 +3,7 @@ import { generateAddress } from '../helpers/kdf'
 import styles from "@/styles/app.module.css";
 import bitcoin from '../helpers/bitcoin.js'
 import { useState, useEffect } from 'react'
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm } from "react-hook-form"
 
 const MPC_PUBLIC_KEY = process.env.MPC_PUBLIC_KEY
 
@@ -11,21 +11,14 @@ export default function Home() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm()
   const { signedAccountId } = useStore();
   const [balance, setBalance] = useState('')
   const [address, setAddress] = useState('')
   const [publicKey, setPublicKey] = useState('')
-
   
-  const onSubmit = (data) => {
-    console.log(data)
-    sendBtc(data.to, data.amount)
-  }
-
-  console.log(signedAccountId)
+  const onSubmit = (data) => sendBtc(data.to, data.amount)
 
   useEffect(() => {
     const getAddress = async () => {
@@ -71,26 +64,22 @@ export default function Home() {
         <p>{`Address:`}</p>
         <input className="border p-1 rounded bg-slate-500 text-white pl-4" defaultValue={address} disabled />
 
-        {/* <button className={'bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md border w-48'}  onClick={() => checkBal()}>CHECK BALANCE</button> */}
         <p onClick={() => checkBal()}>{`Balance:`}</p>
         <input className="border p-1 rounded bg-slate-500 text-white pl-4" defaultValue={balance} disabled />
 
         <div className="flex flex-col">
         <form className="flex flex-col mt-8" onSubmit={handleSubmit(onSubmit)}>
-          {/* register your input into the hook by invoking the "register" function */}
           <p>To Address:</p>
           <input className="border p-1 rounded bg-slate-700 text-white pl-4" placeholder="To Address" {...register("to")} />
 
-          {/* include validation with required or other standard HTML validation rules */}
           <p>Value:</p>
           <input className="border p-1 rounded bg-slate-700 text-white pl-4" placeholder="Value" {...register("amount", { required: true })} />
-          {/* errors will return when field validation fails  */}
+
           {errors.exampleRequired && <span>This field is required</span>}
 
           <input className={'mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md border w-48 mb-2 cursor-pointer'} type="submit" />
         </form>
         </div>
-        {/* <button className={'bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md border w-48 mb-2'} onClick={() => asyncfunc()}>SEND BTC</button> */}
       </div>
     </main>
   );

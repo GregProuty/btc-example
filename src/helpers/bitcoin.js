@@ -49,7 +49,7 @@ const bitcoin = {
   send: async ({
     from: address,
     publicKey,
-    to = 'n47ZTPR31eyi5SZNMbZQngJ4wiZMxXw1bS',
+    to = 'mkB9PV9YcKiLNbf3v8h1TRo863WDAdUkJn',
     amount = '1',
   }) => {
     if (!address) return console.log('must provide a sending address');
