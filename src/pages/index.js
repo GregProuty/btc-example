@@ -1,11 +1,9 @@
 import { useStore } from "@/layout";
 import { generateAddress } from '../helpers/kdf'
-import styles from "@/styles/app.module.css";
 import bitcoin from '../helpers/bitcoin.js'
 import { useState, useEffect } from 'react'
-import { set, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import Spin from '@/components/Spin'
-// import Fail from 'public/'
 import Image from 'next/image'
 import Success from '@/components/Success'
 
@@ -60,6 +58,7 @@ export default function Home() {
     }
     setProgress(false)
   }
+
   const checkBal = async () => {
     const response = await bitcoin.getBalance({
       address: address,
