@@ -21,6 +21,8 @@ export default function Home() {
   const [publicKey, setPublicKey] = useState('')
   const [progress, setProgress] = useState(false)
   const [error, setError] = useState('')
+  const [path, setPath] = useState('')
+
   const onSubmit = (data) => sendBtc(data.to, data.amount)
 
   useEffect(() => {
@@ -28,14 +30,15 @@ export default function Home() {
       const struct = await generateAddress({
         publicKey: MPC_PUBLIC_KEY,
         accountId: signedAccountId,
-        path: 'bitcoin,1',
+        // path: 'bitcoin,1',
+        path,
         chain: 'bitcoin'
       })
       setAddress(struct.address)
       setPublicKey(struct.publicKey)
     } 
     getAddress()
-  }, [signedAccountId])
+  }, [signedAccountId, path])
 
   const sendBtc = async (to, amount) => {
     setProgress(true)
@@ -67,14 +70,17 @@ export default function Home() {
             width={200}
             height={200}
           />
-          <p>{error}</p> 
+          <p className="w-full">{error}</p> 
           <button onClick={() => setError('')} className={'mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md border w-48 mb-2 cursor-pointer'}>OK</button>
         </div> : 
         progress ? 
         <div className={"flex border justify-center items-center min-w-[30em] max-w-[30em] w-[50vw] min-h-[24em] max-h-[30em] h-[50vh] bg-white rounded-xl shadow-xl p-4"} style={{ display: 'flex', flexDirection: 'column' }}>
           <Spin />
         </div>
-      : <div className={"flex border justify-center min-w-[30em] max-w-[30em] w-[50vw] min-h-[24em] max-h-[24em] h-[50vh] bg-white rounded-xl shadow-xl p-4"} style={{ display: 'flex', flexDirection: 'column' }}>
+      : <div className={"flex border justify-center min-w-[30em] max-w-[30em] w-[50vw] min-h-[26em] max-h-[24em] h-[50vh] bg-white rounded-xl shadow-xl p-4"} style={{ display: 'flex', flexDirection: 'column' }}>
+        <p>{`Path:`}</p>
+        <input className="border p-1 rounded bg-slate-700 text-white pl-4 w-1/3" defaultValue={'bitcoin,1'} onChange={(e) => setPath(e.target.value)} />
+
         <p>{`Address:`}</p>
         <input className="border p-1 rounded bg-slate-500 text-white pl-4" defaultValue={address} disabled />
 
