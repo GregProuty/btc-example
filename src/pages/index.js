@@ -63,7 +63,11 @@ export default function Home() {
     const response = await bitcoin.getBalance({
       address: address,
     })
-    if (response) setBalance(response)
+    if (response) {
+      setBalance(response)
+    } else {
+      setBalance(0)
+    }
   }
 
   return (
@@ -89,30 +93,30 @@ export default function Home() {
             <Spin />
           </div>
         : <div className={"flex border justify-center min-w-[30em] max-w-[30em] w-[50vw] min-h-[26em] max-h-[24em] h-[50vh] bg-white rounded-xl shadow-xl p-4"} style={{ display: 'flex', flexDirection: 'column' }}>
-        <p>{`Path:`}</p>
-        <input className="border p-1 rounded bg-slate-700 text-white pl-4 w-1/3" defaultValue={'bitcoin,1'} onChange={(e) => setPath(e.target.value)} />
+          <p>{`Path:`}</p>
+          <input className="border p-1 rounded bg-slate-700 text-white pl-4 w-1/3" defaultValue={'bitcoin,1'} onChange={(e) => setPath(e.target.value)} />
 
-        <p>{`Address:`}</p>
-        <input className="border p-1 rounded bg-slate-500 text-white pl-4" defaultValue={address} disabled />
+          <p>{`Address:`}</p>
+          <input className="border p-1 rounded bg-slate-500 text-white pl-4" defaultValue={address} disabled />
 
-        <p onClick={() => checkBal()}>{`Balance:`}</p>
-        <div className="flex justify-center items-center">
-          <input className="border p-1 rounded bg-slate-500 text-white pl-4 w-4/5 h-10 " defaultValue={balance} disabled />
-          <button onClick={() => checkBal()} className={'bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded border w-1/5 cursor-pointer h-10'}>Check</button>
-        </div>
+          <p onClick={() => checkBal()}>{`Balance:`}</p>
+          <div className="flex justify-center items-center">
+            <input className="border p-1 rounded bg-slate-500 text-white pl-4 w-4/5 h-10 " defaultValue={balance} disabled />
+            <button onClick={() => checkBal()} className={'bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded border w-1/5 cursor-pointer h-10'}>Check</button>
+          </div>
 
-        <div className="flex flex-col">
-        <form className="flex flex-col mt-8" onSubmit={handleSubmit(onSubmit)}>
-          <p>To Address:</p>
-          <input className="border p-1 rounded bg-slate-700 text-white pl-4" placeholder="To Address" {...register("to")} />
+          <div className="flex flex-col">
+          <form className="flex flex-col mt-8" onSubmit={handleSubmit(onSubmit)}>
+            <p>To Address:</p>
+            <input className="border p-1 rounded bg-slate-700 text-white pl-4" placeholder="To Address" {...register("to")} />
 
-          <p>Value:</p>
-          <input className="border p-1 rounded bg-slate-700 text-white pl-4" placeholder="Value" {...register("amount", { required: true })} />
+            <p>Value:</p>
+            <input className="border p-1 rounded bg-slate-700 text-white pl-4" placeholder="Value" {...register("amount", { required: true })} />
 
-          {errors.exampleRequired && <span>This field is required</span>}
+            {errors.exampleRequired && <span>This field is required</span>}
 
-          <button className={'mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md border w-48 mb-2 cursor-pointer'} type="submit">Send BTC</button>
-        </form>
+            <button className={'mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md border w-48 mb-2 cursor-pointer'} type="submit">Send BTC</button>
+          </form>
         </div>
       </div>}
     </main>
