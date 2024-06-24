@@ -21,7 +21,6 @@ async function sha256Hash(str) {
 
   const hashBuffer = await crypto.subtle.digest('SHA-256', data);
 
-  // @ts-ignore
   const hashArray = [...new Uint8Array(hashBuffer)];
   return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
 }
@@ -43,7 +42,6 @@ async function deriveChildPublicKey(
   let scalar = await sha256Hash(
     `near-mpc-recovery v0.1.0 epsilon derivation:${signerId},${path}`,
   );
-  // @ts-ignore
   scalar = sha256StringToScalarLittleEndian(scalar)
 
   const x = parentUncompressedPublicKeyHex.substring(2, 66);

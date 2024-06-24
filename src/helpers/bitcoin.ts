@@ -2,8 +2,6 @@ import { ethers } from 'ethers';
 import { fetchJson } from './utils';
 import { sign } from './near';
 import * as bitcoinJs from 'bitcoinjs-lib';
-console.log('ethers', ethers)
-
 
 const bitcoin = {
   name: 'Bitcoin Testnet',

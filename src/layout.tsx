@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
 
 import { create as createStore } from 'zustand';
-// @ts-ignore
 import { Wallet } from "./wallets/near-wallet";
-// @ts-ignore
 import { Navigation } from "./components/Navigation";
-// @ts-ignore
 import { NetworkId, HelloNearContract } from "./config";
 
+interface StoreState {
+  wallet: Wallet | undefined;
+  signedAccountId: string;
+  setWallet: (wallet: Wallet) => void;
+  setSignedAccountId: (signedAccountId: string) => void;
+}
+
 // Store to share wallet and signed account
-export const useStore = createStore((set) => ({
+export const useStore = createStore<StoreState>((set) => ({
   wallet: undefined,
   signedAccountId: '',
   setWallet: (wallet) => set({ wallet }),
@@ -17,7 +21,6 @@ export const useStore = createStore((set) => ({
 }))
 
 export default function RootLayout({ children }) {
-  // @ts-ignore
   const { setWallet, setSignedAccountId } = useStore();
 
   useEffect(() => {
