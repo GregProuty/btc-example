@@ -142,6 +142,7 @@ const bitcoin = {
         const r = Buffer.from(sig.r, 'hex');
         const s = Buffer.from(sig.s, 'hex');
         const derSignature = bitcoinJs.script.signature.encode(
+          // @ts-ignore
           { r, s },
           bitcoinJs.Transaction.SIGHASH_ALL
         );
@@ -171,6 +172,7 @@ const bitcoin = {
 
     utxos.forEach((_, index) => {
       try {
+        // @ts-ignore
         psbt.finalizeInput(index, (inputIndex, input) => {
           const inputOptions = psbt.data.inputs[inputIndex];
           if (inputOptions.witnessUtxo) {
@@ -178,6 +180,7 @@ const bitcoin = {
               pubkey: keyPair.publicKey,
             });
             return {
+              // @ts-ignore
               finalScriptWitness: bitcoinJs.payments.witnessStackToScriptWitness(p2wpkh.witness),
             };
           } else if (inputOptions.nonWitnessUtxo) {

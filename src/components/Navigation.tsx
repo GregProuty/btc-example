@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import Logo from '/public/near-logo.svg'
-import { useStore } from '@/layout';
+import { useStore } from '../layout';
 
 export const Navigation = () => {
+  // @ts-ignore
   const { signedAccountId, wallet } = useStore();
   const [action, setAction] = useState(() => { });
   const [label, setLabel] = useState('Loading...');
@@ -29,6 +30,7 @@ export const Navigation = () => {
           <Image priority src={Logo} alt="NEAR" width="30" height="24" className="d-inline-block align-text-top" />
         </Link>
         <div className='navbar-nav w-full flex justify-end'>
+          {/* @ts-ignore */}
           <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" onClick={action}> {label} </button>
         </div>
       </div>

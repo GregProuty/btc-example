@@ -1,11 +1,15 @@
-import { useStore } from "@/layout";
+import React from 'react';
+// @ts-ignore
+import { useStore } from "../layout";
 import { generateAddress } from '../helpers/kdf'
-import bitcoin from '../helpers/bitcoin.js'
+import bitcoin from '../helpers/bitcoin'
 import { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form"
-import Spin from '@/components/Spin'
+// @ts-ignore
+import Spin from '../components/Spin'
 import Image from 'next/image'
-import Success from '@/components/Success'
+// @ts-ignore
+import Success from '../components/Success'
 
 const MPC_PUBLIC_KEY = process.env.MPC_PUBLIC_KEY
 
@@ -15,6 +19,7 @@ export default function Home() {
     handleSubmit,
     formState: { errors },
   } = useForm()
+  // @ts-ignore
   const { signedAccountId } = useStore();
   const [balance, setBalance] = useState('')
   const [address, setAddress] = useState('')
@@ -48,10 +53,14 @@ export default function Home() {
       to,
       amount
     })
+    // @ts-ignore
     if (response.status === 200) {
-      const hash = await response.text();
-      setHash(hash)
+      // @ts-ignore
+      console.log('response ', response.body)
+      // @ts-ignore
+      setHash(response.body)
     } else {
+      // @ts-ignore
       const text = await response.text()
       const jsonText = JSON.parse(text.split("error:")[1])
       setError(jsonText.message)
@@ -66,6 +75,7 @@ export default function Home() {
     if (response) {
       setBalance(response)
     } else {
+      // @ts-ignore
       setBalance(0)
     }
   }
@@ -80,6 +90,7 @@ export default function Home() {
           </div>
         : error ? 
           <div className={"flex border justify-center items-center min-w-[30em] max-w-[30em] w-[50vw] min-h-[24em] max-h-[30em] h-[50vh] bg-white rounded-xl shadow-xl p-4"} style={{ display: 'flex', flexDirection: 'column' }}>
+            {/* @ts-ignore */}
             <Image
               src={'fail.svg'}
               width={200}

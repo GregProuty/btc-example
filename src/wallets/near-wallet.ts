@@ -23,7 +23,9 @@ export class Wallet {
    * wallet.startUp((signedAccountId) => console.log(signedAccountId));
    */
   constructor({ networkId = 'testnet', createAccessKeyFor = undefined }) {
+    // @ts-ignore
     this.createAccessKeyFor = createAccessKeyFor;
+    // @ts-ignore
     this.networkId = networkId;
   }
 
@@ -33,11 +35,14 @@ export class Wallet {
    * @returns {Promise<string>} - the accountId of the signed-in user 
    */
   startUp = async (accountChangeHook) => {
+    // @ts-ignore
     this.selector = setupWalletSelector({
+      // @ts-ignore
       network: this.networkId,
       modules: [setupMyNearWallet(), setupHereWallet()]
     });
 
+    // @ts-ignore
     const walletSelector = await this.selector;
     const isSignedIn = walletSelector.isSignedIn();
     const accountId = isSignedIn ? walletSelector.store.getState().accounts[0].accountId : '';
@@ -46,6 +51,7 @@ export class Wallet {
 
     walletSelector.store.observable
       .pipe(
+        // @ts-ignore
         map(state => state.accounts),
         distinctUntilChanged()
       )
@@ -61,6 +67,7 @@ export class Wallet {
    * Displays a modal to login the user
    */
   signIn = async () => {
+    // @ts-ignore
     const modal = setupModal(await this.selector, { contractId: this.createAccessKeyFor });
     modal.show();
   };
@@ -69,6 +76,7 @@ export class Wallet {
    * Logout the user
    */
   signOut = async () => {
+    // @ts-ignore
     const selectedWallet = await (await this.selector).wallet();
     selectedWallet.signOut();
   };
@@ -81,6 +89,7 @@ export class Wallet {
    * @returns {Promise<JSON.value>} - the result of the method call
    */
   viewMethod = async ({ contractId, method, args = {} }) => {
+    // @ts-ignore
     const walletSelector = await this.selector;
     const { network } = walletSelector.options;
     const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
@@ -92,6 +101,7 @@ export class Wallet {
       args_base64: Buffer.from(JSON.stringify(args)).toString('base64'),
       finality: 'optimistic',
     });
+    // @ts-ignore
     return JSON.parse(Buffer.from(res.result).toString());
   };
 
@@ -107,6 +117,7 @@ export class Wallet {
    */
   callMethod = async ({ contractId, method, args = {}, gas = THIRTY_TGAS, deposit = NO_DEPOSIT }) => {
     // Sign a transaction with the "FunctionCall" action
+    // @ts-ignore
     const selectedWallet = await (await this.selector).wallet();
     const outcome = await selectedWallet.signAndSendTransaction({
       receiverId: contractId,
@@ -132,6 +143,7 @@ export class Wallet {
    * @returns {Promise<JSON.value>} - the result of the transaction
    */
   getTransactionResult = async (txhash) => {
+    // @ts-ignore
     const walletSelector = await this.selector;
     const { network } = walletSelector.options;
     const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });

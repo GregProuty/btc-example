@@ -49,6 +49,7 @@ export async function sign(payload, path) {
       methodName: 'sign',
       args,
       gas: new BN('300000000000000'),
+      // @ts-ignore
       attachedDeposit,
     });
   } catch (e) {
